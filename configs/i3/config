@@ -1,0 +1,268 @@
+
+# #---Basic Definitions---# #
+# Needed for i3-gaps
+for_window [class="^.*"] border pixel 2
+gaps inner 15
+gaps outer 15
+set $term --no-startup-id $TERMINAL
+set $mod Mod4
+set $stoprec --no-startup-id dmenurecord kill
+set $shutdown sudo -A shutdown -h now
+set $reboot sudo -A reboot
+#set $netrefresh --no-startup-id sudo -A systemctl restart NetworkManager
+set $hibernate sudo -A systemctl suspend
+
+# #---Starting External Scripts---# #
+# Setting the background:
+exec --no-startup-id feh --randomize --bg-scale ~/.wallpapers/
+# Starts dunst for notifications:
+exec --no-startup-id dunst
+# Composite manager:
+exec --no-startup-id compton
+
+# #---Basic Bindings---# #
+bindsym $mod+Return 		exec $term
+
+bindsym $mod+Shift+space 	floating toggle
+bindsym $mod+space		focus mode_toggle
+
+bindsym $mod+Escape		workspace prev
+bindsym $mod+Shift+Escape 	exec --no-startup-id prompt "Exit i3?" "i3-msg exit"
+
+# bindsym $mod+BackSpace
+bindsym $mod+Shift+BackSpace	exec --no-startup-id prompt "Reboot computer?" "$reboot"
+
+bindsym $mod+grave		exec --no-startup-id dmenuunicode
+##bindsym $mod+asciitilde
+
+# Show selection:
+bindsym $mod+Insert		exec --no-startup-id showclip
+#bindsym $mod+Pause		exec --no-startup-id xcqr
+
+bindsym $mod+Shift+w	exec --no-startup-id $BROWSER
+
+bindsym $mod+m 			exec $term -e mc
+
+bindsym $mod+Shift+r		exec --no-startup-id winresize
+
+bindsym $mod+t			split toggle
+bindsym $mod+Shift+t		gaps inner current set 15; gaps outer current set 15
+
+bindsym $mod+h 			exec $term -e htop
+
+bindsym $mod+Shift+a		exec $term -e alsamixer
+
+bindsym $mod+s			gaps inner current plus 5
+bindsym $mod+Shift+s		gaps inner current minus 5
+
+bindsym $mod+d			exec --no-startup-id dmenu_run
+
+bindsym $mod+Shift+d		gaps inner current set 0; gaps outer current set 0
+
+set $freeze Distraction-free mode (super+shift+f to reactivate bindings)
+mode "$freeze" { bindsym $mod+Shift+f mode "default"
+}
+
+bindsym $mod+f			fullscreen toggle
+bindsym $mod+Shift+f		mode "$freeze" ;; exec --no-startup-id notify-send "<b>Distraction-free mode activated.</b> Press Super+Shift+f to return."
+
+bindsym $mod+g			workspace prev
+
+bindsym $mod+x			exec --no-startup-id lockscreen
+bindsym $mod+Shift+x		exec --no-startup-id prompt "Shutdown computer?" "$shutdown"
+
+bindsym $mod+b			bar mode toggle
+
+# #---Workspace Bindings---# #
+bindsym $mod+Home		workspace $ws1
+bindsym $mod+Shift+Home		move container to workspace $ws1
+bindsym $mod+End		workspace $ws10
+bindsym $mod+Shift+End		move container to workspace $ws10
+bindsym $mod+Prior		workspace prev
+bindsym $mod+Shift+Prior	move container to workspace prev
+bindsym $mod+Next		workspace next
+bindsym $mod+Shift+Next		move container to workspace next
+bindsym $mod+Tab		workspace back_and_forth
+bindsym $mod+XF86Back		workspace prev
+bindsym $mod+Shift+XF86Back	move container to workspace prev
+bindsym $mod+XF86Forward	workspace next
+bindsym $mod+Shift+XF86Forward	move container to workspace next
+bindsym $mod+semicolon		workspace next
+bindsym $mod+backslash		workspace back_and_forth
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+set $ws11 "11"
+set $ws12 "12"
+set $ws13 "13"
+set $ws14 "14"
+set $ws15 "15"
+set $ws16 "16"
+set $ws17 "17"
+set $ws18 "18"
+set $ws19 "19"
+set $ws20 "20"
+
+
+# switch to workspace
+bindsym $mod+1		workspace $ws1
+bindsym $mod+2		workspace $ws2
+bindsym $mod+3		workspace $ws3
+bindsym $mod+4		workspace $ws4
+bindsym $mod+5		workspace $ws5
+bindsym $mod+6		workspace $ws6
+bindsym $mod+7		workspace $ws7
+bindsym $mod+8		workspace $ws8
+bindsym $mod+9		workspace $ws9
+bindsym $mod+0		workspace $ws10
+bindsym $mod+Control+1		workspace $ws11
+bindsym $mod+Control+2		workspace $ws12
+bindsym $mod+Control+3		workspace $ws13
+bindsym $mod+Control+4		workspace $ws14
+bindsym $mod+Control+5		workspace $ws15
+bindsym $mod+Control+6		workspace $ws16
+bindsym $mod+Control+7		workspace $ws17
+bindsym $mod+Control+8		workspace $ws18
+bindsym $mod+Control+9		workspace $ws19
+bindsym $mod+Control+0		workspace $ws20
+
+# move focused container to workspace
+bindsym $mod+Shift+1	move container to workspace $ws1
+bindsym $mod+Shift+2	move container to workspace $ws2
+bindsym $mod+Shift+3	move container to workspace $ws3
+bindsym $mod+Shift+4	move container to workspace $ws4
+bindsym $mod+Shift+5	move container to workspace $ws5
+bindsym $mod+Shift+6	move container to workspace $ws6
+bindsym $mod+Shift+7	move container to workspace $ws7
+bindsym $mod+Shift+8	move container to workspace $ws8
+bindsym $mod+Shift+9	move container to workspace $ws9
+bindsym $mod+Shift+0	move container to workspace $ws10
+bindsym $mod+Control+Shift+1	move container to workspace $ws11
+bindsym $mod+Control+Shift+2	move container to workspace $ws12
+bindsym $mod+Control+Shift+3	move container to workspace $ws13
+bindsym $mod+Control+Shift+4	move container to workspace $ws14
+bindsym $mod+Control+Shift+5	move container to workspace $ws15
+bindsym $mod+Control+Shift+6	move container to workspace $ws16
+bindsym $mod+Control+Shift+7	move container to workspace $ws17
+bindsym $mod+Control+Shift+8	move container to workspace $ws18
+bindsym $mod+Control+Shift+9	move container to workspace $ws19
+bindsym $mod+Control+Shift+0	move container to workspace $ws20
+
+for_window [window_role="GtkFileChooserDialog"] resize shrink height 10 px
+for_window [title="Default - Wine desktop"] floating enable
+
+# #---Function Buttons---# #
+#bindsym $mod+F1		exec --no-startup-id groff -kejpt -mom ~/.readme.mom -Tpdf | zathura -
+bindsym $mod+F2		restart
+bindsym $mod+F3		exec --no-startup-id displayselect
+bindsym $mod+F4		exec --no-startup-id prompt "Hibernate computer?" "$hibernate"
+#bindsym $mod+F5		exec --no-startup-id $netrefresh
+#bindsym $mod+F6		exec --no-startup-id $term -e transmission-remote-cli
+#bindsym $mod+F7		exec --no-startup-id td-toggle
+#bindsym $mod+F8		exec --no-startup-id ~/.config/mutt/etc/mailsync.sh
+bindsym $mod+F9		exec --no-startup-id dmenumount
+bindsym $mod+F10	exec --no-startup-id dmenuumount
+#bindsym $mod+F11	exec --no-startup-id ducksearch
+#bindsym $mod+F12	exec $term -e nmtui
+
+# #---Arrow Keys---# #
+bindsym $mod+Left		focus left
+bindsym $mod+Down		focus down
+bindsym $mod+Up			focus up
+bindsym $mod+Right 		focus right
+bindsym $mod+Shift+Left		move left
+bindsym $mod+Shift+Down		move down
+bindsym $mod+Shift+Up		move up
+bindsym $mod+Shift+Right 	move right
+
+# #---Extra XF86 Keys---# #
+#bindsym XF86AudioMute		exec 
+#bindsym XF86AudioLowerVolume	exec 
+#bindsym Shift+XF86AudioLowerVolume	exec 
+#bindsym Control+XF86AudioLowerVolume	exec 
+#bindsym XF86AudioRaiseVolume	exec 
+#bindsym Shift+XF86AudioRaiseVolume	exec 
+#bindsym Control+XF86AudioRaiseVolume	exec 
+bindsym XF86PowerOff		exec --no-startup-id prompt "Shutdown computer?" "$shutdown"
+##bindsym XF86Copy		exec
+##bindsym XF86Open		exec
+##bindsym XF86Paste		exec
+##bindsym XF86Cut		exec
+##bindsym XF86MenuKB		exec
+#bindsym XF86Calculator		exec
+##bindsym XF86Sleep		This binding is typically mapped by systemd automatically.
+##bindsym XF86WakeUp		exec
+bindsym XF86Explorer		exec $term -e mc
+##bindsym XF86Send		exec
+##bindsym XF86Xfer		exec
+bindsym XF86WWW			exec --no-startup-id $BROWSER
+##bindsym XF86DOS		exec
+bindsym XF86ScreenSaver		exec --no-startup-id lockscreen
+##bindsym XF86RotateWindows	exec
+##bindsym XF86TaskPane		exec
+##bindsym XF86Favorites		exec
+bindsym XF86MyComputer		exec $term -e mc
+##bindsym XF86Back		exec
+##bindsym XF86Forward		exec
+bindsym XF86Eject		exec --no-startup-id dmenuumount
+#bindsym XF86AudioNext		exec 
+#bindsym XF86AudioPlay		exec 
+#bindsym XF86AudioPrev		exec 
+#bindsym XF86AudioStop		exec 
+##bindsym XF86AudioRecord
+#bindsym XF86AudioRewind		exec
+#bindsym XF86AudioForward	exec
+##bindsym XF86Phone		exec
+##bindsym XF86Tools		exec
+bindsym XF86HomePage		exec $BROWSER https://google.com/
+bindsym XF86Reload		restart
+##bindsym XF86ScrollUp		exec
+##bindsym XF86ScrollDown		exec
+##bindsym XF86New		exec
+##bindsym XF86LaunchA		exec
+##bindsym XF86LaunchB		exec
+##bindsym XF86Launch2		exec
+##bindsym XF86Launch3		exec
+##bindsym XF86Launch4		exec
+##bindsym XF86Launch5		exec
+##bindsym XF86Launch6		exec
+##bindsym XF86Launch7		exec
+##bindsym XF86Launch8		exec
+##bindsym XF86Launch9		exec
+#bindsym XF86AudioMicMute	exec $micmute
+#bindsym XF86TouchpadToggle	exec --no-startup-id toggletouchpad
+#bindsym XF86TouchpadOn		exec --no-startup-id synclient TouchpadOff=0
+#bindsym XF86TouchpadOff		exec --no-startup-id synclient TouchpadOff=1
+bindsym XF86Suspend		exec --no-startup-id lockscreen
+bindsym XF86Close		kill
+#bindsym XF86WebCam		exec --no-startup-id camtoggle
+#bindsym XF86Mail		exec $term -e neomutt && pkill -RTMIN+12 i3blocks
+#bindsym XF86Messenger		exec $term -e weechat
+bindsym XF86Search		exec $BROWSER https://google.com/
+##bindsym XF86Go			exec
+##bindsym XF86Finance		exec
+##bindsym XF86Game		exec
+#bindsym XF86Shop		exec
+bindsym XF86MonBrightnessDown	exec --no-startup-id xbacklight -dec 15
+bindsym XF86MonBrightnessUp	exec --no-startup-id xbacklight -inc 15
+#bindsym XF86AudioMedia		exec
+bindsym XF86Display		exec --no-startup-id arandr
+#bindsym XF86KbdLightOnOff	exec
+#bindsym XF86KbdBrightnessDown	exec
+#bindsym XF86KbdBrightnessUp	exec
+##bindsym XF86Reply		exec
+##bindsym XF86MailForward	exec
+##bindsym XF86Save		exec
+bindsym XF86Documents		exec $term -e mc ~/Documents
+##bindsym XF86Battery		exec
+##bindsym XF86Bluetooth		exec
+#bindsym XF86WLAN		exec $netrefresh
+#exec_always --no-startup-id notify-send -i ~/.scripts/pix/larbs.png '<b>Welcome to LARBS:</b> Press Super+F1 for the manual.' -t 10000
