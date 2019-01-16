@@ -1,0 +1,107 @@
+list all keybinds for i3
+
+tab  workspace back_and_forth
+q | shutdown
+w
+e
+r winresize
+t split toggle
+y
+u
+i gapps + | gapps -
+o
+p
+[
+]
+\
+
+{
+}
+|
+
+a | alsamixer
+s
+d
+f
+g
+h split horizontal | htop
+j
+k
+l
+;
+'
+return TERMINAL | 
+
+:
+"
+
+z
+x
+c | browser
+v split vertical
+b
+n
+m | mc
+,
+.
+/
+
+<
+>
+?
+
+space floating | floating focus
+
+insert
+home
+pgup
+delete
+end
+pgdn
+
+up focus | move 
+down focus | move
+right focus | move | workspace next
+left focus | move | workspace prev
+
+`
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0
+-
+=
+backspace
+
+~
+!
+@
+#
+$
+%
+^
+&
+*
+(
+)
+_
++
+
+F1
+F2 fullscreen toggle
+F3
+F4
+F5
+F6
+F7
+F8
+F9
+F10
+F11
+F12
